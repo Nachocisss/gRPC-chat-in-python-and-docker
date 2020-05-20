@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  server:
+    build: server/
+    command: python ./servidor.py
+    ports:
+      - 50051:50051
+    tty: true
+  client:
+    build: client/
+    command: python ./cliente.py
+    network_mode: host
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
